@@ -2,13 +2,50 @@ import pygame
 import random
 pygame.init()
 
-gameSize = 11
+gameSize = 7
 squareSize = 80
 width = squareSize * gameSize
+piece_size = 30
 
 grey = (128, 128, 128)
-atker = random.randrange(0, 255, 1)
-defer = random.randrange(0, 255, 1)
+atker_color = random.randrange(0, 255, 1)
+defer_color = random.randrange(0, 255, 1)
+
+test_coord = [120, 40]
+
+
+def createBoardCoords(side, square_Size):
+    coord_dist = square_Size
+    coord_start = square_Size / 2
+
+    board = []
+    for x in range(side):
+        row_array = []
+        for y in range(side):
+            a = coord_start + coord_dist*y
+            b = coord_start + coord_dist*x
+            row_array.append([a, b])
+        board.append(row_array)
+    return board
+
+
+board_coords = createBoardCoords(gameSize, squareSize)
+
+
+def drawPiece(team_color, coord, surface, piece_size):
+    pygame.draw.circle(surface, team_color, coord, piece_size)
+
+
+def sevenStart(coordsArray, surface):
+    attacker_coords = []
+    defender_coords = []
+
+
+
+
+
+
+
 
 
 def drawGrid(w, rows, surface):
@@ -28,6 +65,7 @@ def redrawWindow(surface):
 
     surface.fill((143, 188, 143))
     drawGrid(width, gameSize, surface)
+    drawPiece(atker_color,test_coord,surface,piece_size)
     pygame.display.update()
 
 
